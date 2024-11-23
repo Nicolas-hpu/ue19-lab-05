@@ -14,7 +14,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository | toLower }}
+  IMAGE_NAME: ${{ github.repository }}
 
 
 jobs:
@@ -31,6 +31,10 @@ jobs:
     steps:  
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # Convert repository name to lowercase and store it in an environment variable
+      - name: Convert repository name to lowercase
+        run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
