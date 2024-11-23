@@ -92,6 +92,10 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
         
-        #Bout de coe qui fonctionne ?
-      - name: Aqua Security Trivy
+        #Bout de code qui fonctionne ?
+      - name: Aqua Security Trivy - Scan Docker Image
         uses: aquasecurity/trivy-action@0.29.0
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          format: table
+          
