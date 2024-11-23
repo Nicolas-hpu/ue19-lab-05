@@ -1,6 +1,6 @@
 # UE19 Lab 05: Application Lorem Picsum
 
-Ce projet est une application Python qui interroge le service Lorem Picsum qui affiche une image "placeholder"
+Ce projet est une application Python qui interroge le service Lorem Picsum pour afficher une image "placeholder"
 
 ## Fonctionnalités
 - Affiche une image en fonction des parametres (resolution, blur, greyscale, ...).
@@ -9,9 +9,8 @@ Ce projet est une application Python qui interroge le service Lorem Picsum qui a
 - Python 3.x
 
 ## Installation et exécution
+Il y a un fichier dockerfile pour pouvoir le mettre sur un docker.
 
+ou
 ### Méthode 1 : Directement avec Python
-1. Clonez ce repository :
-   ```bash
-   git clone <repository_url>
-   cd ue19-lab-05
+Le faire tourner en local directement
