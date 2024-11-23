@@ -29,6 +29,10 @@ jobs:
       id-token: write
 
     steps:
+      #Bout de coe qui fonctionne ?
+      - name: Aqua Security Trivy
+        uses: aquasecurity/trivy-action@0.29.0
+            
       - name: Checkout repository
         uses: actions/checkout@v4
 
