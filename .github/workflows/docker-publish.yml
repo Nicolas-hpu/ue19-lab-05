@@ -75,10 +75,10 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
-          push: true  # Important : pousse l'image dans le registre
-          #tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          #push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          push: ${{ github.event_name != 'pull_request' }}
+          #push: true  # Important : pousse l'image dans le registre
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          #tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
