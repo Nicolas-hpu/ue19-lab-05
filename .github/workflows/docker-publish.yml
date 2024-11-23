@@ -71,8 +71,10 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          push: true  # Important : pousse l'image dans le registre
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          #push: ${{ github.event_name != 'pull_request' }}
+          #tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -91,6 +93,11 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+
+      - name: Verify pushed image
+        run: |
+          echo "Verifying image existence in registry"
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         
         #Bout de code qui fonctionne ?
       - name: Aqua Security Trivy - Scan Docker Image
